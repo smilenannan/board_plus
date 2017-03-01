@@ -1,0 +1,12 @@
+<h1>スレッド一覧</h1>
+<%= link_to "新規スレッド作成", new_my_thread_path %>
+
+<ul>
+<% @my_threads.each do |my_thread| %>
+<li>
+  <%= link_to my_thread.title, my_thread_path(my_thread.id) %>
+  <%= link_to_if(@current_user.id==my_thread.user_id, '[編集]', edit_my_thread_path(my_thread.id)) %>
+  <%= link_to_if(@current_user.id==my_thread.user_id, '[削除]', my_thread_path(my_thread.id), method: :delete, data: {confirm: "本当に消しますか？"}) %><br>
+</li>
+<% end %>
+</ul>

@@ -1,0 +1,21 @@
+<h1>スレッド新規作成</h1>
+
+<%= form_for @my_thread do |f| %>
+<p>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %><br>
+  <%= f.label :content %><br>
+  <%= f.text_area :content %><br>
+  <% if @my_thread.errors.any? %>
+  <%= p "文字を入力してください" %>
+  <% end %>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+
+<% end %>
+
+<p>
+  <%= link_to '戻る', my_threads_path %>
+</p>

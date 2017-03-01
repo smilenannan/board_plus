@@ -1,0 +1,33 @@
+<h1>スレッド詳細</h1>
+
+<p>
+  <strong>title</strong><br>
+  <%= @my_thread.title %><br>
+  <strong>content</strong><br>
+  <%= @my_thread.content %><br>
+</p>
+
+<p>
+  <%= link_to '[編集]', edit_my_thread_path(@my_thread.id) %> |  
+  <%= link_to '[削除]', my_thread_path(@my_thread.id), method: :delete, data: {confirm: "本当に消しますか？"} %> 
+</p>
+
+<p>
+  <%= link_to '新規コメント作成', new_my_thread_comment_path(@my_thread.id) %>
+</p>
+<h2>コメント一覧</h2>
+<p>
+  <ul>
+  <% @my_thread.comments.each do |comment| %>
+  <li>
+    <%= comment.content %>
+    <%= link_to_if(@current_user.id==comment.user_id, '[編集]', edit_my_thread_comment_path(my_thread_id: @my_thread.id, id: comment.id)) %>
+    <%= link_to_if(@current_user.id==comment.user_id, '[削除]', my_thread_comment_path(my_thread_id: @my_thread.id, id: comment.id), method: :delete, data: {confirm: "本当に消しますか？"}) %><br>
+  </li>
+  <% end %>
+  </ul>
+</p>
+
+<p>
+  <%= link_to '戻る', my_threads_path %>  
+</p>
