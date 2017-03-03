@@ -1,21 +1,18 @@
 <h1>スレッド編集</h1>
 
 <%= form_for @my_thread do |f| %>
-<p>
-  <%= f.label :title %><br>
-  <%= f.text_field :title %><br>
-  <% if @my_thread.errors.any? %>
-  <%= @my_thread.errors.messages[:title][0] %>
-  <% end %>
-  <%= f.label :content %><br>
-  <%= f.text_area :content %>
-  <% if @my_thread.errors.any? %>
-  <%= @my_thread.errors.messages[:title][0] %>
-  <% end %>
-</p>
-<p>
-  <%= f.submit %>
-</p>
+<%= f.label :title %><br>
+<%= f.text_field :title %><br>
+<% if @my_thread.errors.any? %>
+<%= @my_thread.errors.messages[:title][0] %>
+<% end %>
+<%= f.label :content %><br>
+<%= f.text_area :content %>
+<% if @my_thread.errors.any? %>
+<%= @my_thread.errors.messages[:title][0] %>
+<% end %>
+<%= f.hidden_field :user_id, :value=>current_user.id %>
+<%= f.submit %>
 
 <% end %>
 <p>

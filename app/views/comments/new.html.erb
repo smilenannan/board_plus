@@ -1,15 +1,13 @@
 <h1>コメント新規作成</h1>       
                                 
 <%= form_for @comment, :url=>{:action=>'create'}  do |f| %>
-<p>                             
-  <%= f.label :content %><br>   
-  <%= f.text_area :content %><br>
-  <% if @comment.errors.any? %>
-  <%= p "文字を入力してください" %>                                                                                                        
-  <% end %>                     
-</p>                            
-<p>                             
-  <%= f.submit %>               
-</p>                            
+<%= f.label :content %><br>   
+<%= f.text_area :content %><br>
+<% if @comment.errors.any? %>
+<%= "文字を入力してください" %>                                                                                                        
+<% end %>                     
+<%= f.hidden_field :user_id, :value=>current_user.id %>
+<%= f.submit %>               
+
 <%= link_to '戻る', my_thread_path(@comment.my_thread_id) %>                                
 <% end %>                

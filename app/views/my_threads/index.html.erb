@@ -5,8 +5,8 @@
 <% @my_threads.each do |my_thread| %>
 <li>
   <%= link_to my_thread.title, my_thread_path(my_thread.id) %>
-  <%= link_to_if(@current_user.id==my_thread.user_id, '[編集]', edit_my_thread_path(my_thread.id)) %>
-  <%= link_to_if(@current_user.id==my_thread.user_id, '[削除]', my_thread_path(my_thread.id), method: :delete, data: {confirm: "本当に消しますか？"}) %><br>
+  <%= link_to_if(current_user.id==my_thread.user_id, '[編集]', edit_my_thread_path(my_thread.id)) %>
+  <%= link_to_if(current_user.id==my_thread.user_id, '[削除]', my_thread_path(my_thread.id), method: :delete, data: {confirm: "本当に消しますか？"}) %><br>
 </li>
 <% end %>
 </ul>

@@ -2,7 +2,6 @@ class MyThreadsController < ApplicationController
 
   def index
     @my_threads = MyThread.all
-    @current_user = current_user
   end  
 
   def new
@@ -14,13 +13,12 @@ class MyThreadsController < ApplicationController
     if @my_thread.save
       redirect_to my_threads_path
     else
-      render 'new'
+      render :new
     end
   end
 
   def show
     @my_thread = MyThread.find(params[:id]) 
-    @current_user = current_user
   end
 
   def edit
@@ -32,7 +30,7 @@ class MyThreadsController < ApplicationController
     if @my_thread.update(my_thread_params)
       redirect_to my_threads_path
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -44,7 +42,7 @@ class MyThreadsController < ApplicationController
 
   private
     def my_thread_params
-      params.require(:my_thread).permit(:title, :content).merge(user_id: current_user.id)
+      params.require(:my_thread).permit(:title, :content, :user_id)
     end
 end
 
